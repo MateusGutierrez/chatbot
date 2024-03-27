@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { useChat } from "ai/react";
 import { ScrollArea } from "./ui/scroll-area";
-
+import Image from "next/image";
 
 export const Chat = () => {
     const { messages, input, handleInputChange, handleSubmit } = useChat({
@@ -15,8 +15,16 @@ export const Chat = () => {
 return (
     <Card className="w-[600px]">
         <CardHeader>
-          <CardTitle>Chat AI</CardTitle>
-          <CardDescription>Using Vercel SDK to create a chat bot.</CardDescription>
+        <div className="flex items-center justify-between w-full h-[80px]">
+          <div>
+            <CardTitle>Chat AI</CardTitle>
+            <CardDescription>Using Vercel SDK to create a chat bot.</CardDescription>
+          </div>
+            <Avatar className="h-[100px] w-[100px]">
+                <AvatarFallback>Assistant</AvatarFallback>
+                <AvatarImage src="https://i.pinimg.com/564x/85/6b/61/856b619107427ef73b87ee9fa3b57fc8.jpg"/>
+            </Avatar>
+        </div>
           <CardContent>
             <ScrollArea className="h-[640px] space-y-4 mt-2">
                 {messages.map(message => {
@@ -34,7 +42,7 @@ return (
                         <AvatarImage src="https://i.pinimg.com/564x/85/6b/61/856b619107427ef73b87ee9fa3b57fc8.jpg"/>
                     </Avatar>
                 )}
-                <p className="leading-relaxed mr-3">
+                <p className="leading-relaxed mr-3 mb-3">
                     <span className="block font-bold text-slate-700 mt-3">
                     {message.role === 'user' ? 'User' : "AI"}
                     </span>
